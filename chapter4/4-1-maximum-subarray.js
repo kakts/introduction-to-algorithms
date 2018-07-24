@@ -51,6 +51,7 @@ function findMaximumSubArray(list, low, high) {
   // 中間値のインデックス
   let mid = Math.floor((low + high) / 2);
 
+  // 左右の最大部分配列を取得する
   const leftMaximum = findMaximumSubArray(list, low, mid);
 
   const rightMaximum = findMaximumSubArray(list, mid + 1, high);
