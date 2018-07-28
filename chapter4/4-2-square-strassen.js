@@ -28,5 +28,53 @@
  * 
  * 1回分の行列乗算を 定数回の行列加減算におきかえた これにより、漸近的実行時間が改良される
  */
-// TODO strassenアルゴリズムの実装
 
+ // Strassenアルゴリズムによる 2*2行列同士の積を求めるもの
+function multipleMatrixByStrassen(A, B) {
+  const a11 = A[0][0];
+  const a12 = A[0][1];
+  const a21 = A[1][0];
+  const a22 = A[1][1];
+
+  const b11 = B[0][0];
+  const b12 = B[0][1];
+  const b21 = B[1][0];
+  const b22 = B[1][1];
+
+  const s1 = b12 - b22;
+  const s2 = a11 + a12;
+  const s3 = a21 + a22;
+  const s4 = b21 - b11;
+  const s5 = a11 + a22;
+  const s6 = b11 + b22;
+  const s7 = a12 - a22;
+  const s8 = b21 + b22;
+  const s9 = a11 - a21;
+  const s10 = b11 + b12;
+
+  const p1 = a11 * s1;
+  const p2 = s2 * b22;
+  const p3 = s3 * b11;
+  const p4 = a22 * s4;
+  const p5 = s5 * s6;
+  const p6 = s7 * s8;
+  const p7 = s9 * s10;
+
+  const result = [[],[]];
+  result[0][0] = p5 + p4 - p2 + p6;
+  result[0][1] = p1 + p2;
+  result[1][0] = p3 + p4;
+  result[1][1] = p5 + p1 - p3 - p7;
+
+  return result;
+}
+
+const A = [
+  [1, 3],
+  [7, 5]
+];
+const B = [
+  [6, 8],
+  [4, 2]
+];
+console.log(multipleMatrixByStrassen(A, B))
