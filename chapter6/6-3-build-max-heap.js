@@ -37,7 +37,7 @@ function buildMaxHeap(A) {
   A.heapSize = A.length;
 
   // ヒープの最下層の小要素からmaxHeapifyを実行する
-  for (let i = Math.floor(A.length / 2); i > 0; i--) {
+  for (let i = Math.floor(A.length / 2); i >= 0; i--) {
     maxHeapify(A, i);
   }
 
